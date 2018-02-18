@@ -2,6 +2,13 @@
 
 Collection of scripts for the Salome platform.
 
+# Install Instructions
+
+Copy the Plugins folder and its contents to the following address:
+
+* /home/USER_NAME/.config/salome/Plugins/
+
+change USER_NAME by your username
 
 ## Geom Plugins
 
