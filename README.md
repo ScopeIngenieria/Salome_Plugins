@@ -76,5 +76,20 @@ Autor: @psicofil (Lucio Gomez)
 
 Video Idea Demostration (Old Video): https://www.youtube.com/watch?v=sRjfJeXBlBY
 
+### Export Salome Mesh to CalcuiX 
 
+A python script that outputs a Salome mesh to Calculix using unical converter for Bernhardi, Aug 2011
+
+#### Important: You need a Unical converter binary
+
+![ScreenShot](Previews/smesh_calculix_export.png)
+
+Original Source: https://github.com/psicofil/SalomeToCalculix
+Unical Source: https://github.com/prool/unical1
+Psicofil Unical Source: https://github.com/psicofil/SalomeToCalculix
+
+Autor: @psicofil (Lucio Gomez)
+Unical Autor: Bernhardi & prool
+
+Video Idea Demostration (Old Video): https://www.youtube.com/watch?v=yxqawAr1H3s
 
