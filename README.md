@@ -16,7 +16,7 @@ On Windows:
 
 Copy the Plugins folder and its contents to the following address:
 
-* C:\Users\USER_NAME\.config\salome
+* C:/Users/USER_NAME/.config/salome
 
 change USER_NAME by your username
 
