@@ -4,9 +4,19 @@ Collection of scripts for the Salome platform.
 
 # Install Instructions
 
+On Linux:
+
 Copy the Plugins folder and its contents to the following address:
 
-* /home/USER_NAME/.config/salome/Plugins/
+* /home/USER_NAME/.config/salome
+
+change USER_NAME by your username
+
+On Windows:
+
+Copy the Plugins folder and its contents to the following address:
+
+* C:\Users\USER_NAME\.config\salome
 
 change USER_NAME by your username
 
