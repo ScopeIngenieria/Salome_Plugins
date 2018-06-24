@@ -22,6 +22,8 @@ change USER_NAME by your username
 
 ## Geom Plugins
 
+Video Demostration: https://www.youtube.com/watch?v=W_JMXui-vkI
+
 ### Filter Group
 
 Creating Geometry groups in the GEOM module using features and properties of another group.
@@ -110,3 +112,10 @@ Unical Autor: Bernhardi & prool
 
 Video Idea Demostration (Old Video): https://www.youtube.com/watch?v=yxqawAr1H3s
 
+## AsterStudy (Salome Meca - Code_Aster) Plugins
+
+### Monitor Simulation Plots
+
+Python plugin to monitor mechanical simulations in AsterStudy (Salome_Meca 2017)
+
+![ScreenShot](Previews/Aster_Monitor.png)
