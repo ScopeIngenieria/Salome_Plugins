@@ -76,7 +76,7 @@ class MonitorCA(QWidget):
                         except:
                             cont_var.append(0.0)
                         h1.append(h[len(h)-1])
-                    if "Time of computation: " in line:
+                    if "Time of computation: " in line or "Instant de calcul: " in line:
                         h.append(float(line[line.find(': ')+1:len(line)]))
                     if "EXECUTION_CODE_ASTER_EXIT" in line:
                         fin = 1
