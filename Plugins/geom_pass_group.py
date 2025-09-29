@@ -2,11 +2,10 @@
 # Pass groups from objects script
 # Autor: Lucio Gomez (psicofil@gmail.com)
 # Creation Date: 15/08/2017
-# Version: 19/09/2025
+# Version: 29/09/2025
 
 # Import the necessary
 from qtsalome import *
-
 import salome
 salome.salome_init()
 import GEOM
@@ -82,6 +81,7 @@ class PassGroups(QWidget):
     def proceed(self):
         groups_passed = list()
         groups_no_passed = list()
+        groups_partially_passed = list()
         shape_1 = False
         shape_2 = False
         try:
@@ -103,34 +103,38 @@ class PassGroups(QWidget):
                     type_g = str(group_p.GetShapeType())
                     props = geompy.BasicProperties(group_p)
                     if type_g == "COMPOUND":
-                        if props[2] == 0:
+                        if props[2]==0:
                             type_g = "FACE"
-                        if props[1] == 0:
+                        if props[1]==0:
                             type_g = "EDGE"
-                        if props[2] > 0:
+                        if props[2]>0:
                             type_g = "SOLID"
-                    props = geompy.BasicProperties(group_p)
                     elements = geompy.ExtractShapes(group_p, geompy.ShapeType[type_g], True)
-                    props = geompy.BasicProperties(group_p)
                     Group_ob = geompy.CreateGroup(self.destin_obj, geompy.ShapeType[type_g])
-                    try:
-                        if len(elements) > 1:
-                            for elem in elements:
+                    if len(elements) > 1:
+                        for elem in elements:
+                            try:
                                 group_pass = geompy.GetSame(self.destin_obj, elem)
                                 Element_ID = geompy.GetSubShapeID(self.destin_obj, group_pass)
                                 geompy.AddObject(Group_ob, Element_ID)
-                            geompy.addToStudyInFather(self.destin_obj, Group_ob, name_g)
+                            except:
+                                None
+                        if len(Group_ob.GetSubShapeIndices()) == len(group_p.GetSubShapeIndices()):
                             groups_passed.append(name_g)
                         else:
+                            groups_partially_passed.append(name_g)
+                        geompy.addToStudyInFather(self.destin_obj, Group_ob, name_g)
+                    else:
+                        try:
                             group_pass = geompy.GetSame(self.destin_obj, group_p)
                             Element_ID = geompy.GetSubShapeID(self.destin_obj, group_pass)
                             geompy.AddObject(Group_ob, Element_ID)
                             geompy.addToStudyInFather( self.destin_obj, Group_ob, name_g )
                             groups_passed.append(name_g)
-                    except:
-                        groups_no_passed.append(name_g)
+                        except:
+                            groups_no_passed.append(name_g)
                     self.progress_bar.setValue(100*i/(n_groups-1))
-                QMessageBox.information(None, "Informacion","Groups that passed:\n\n"+str(groups_passed)+"\n\n"+"Groups that No passed:\n\n"+ str(groups_no_passed), QMessageBox.Ok)
+                QMessageBox.information(None, "Informacion","Groups passed:\n\n"+str(groups_passed)+"\n\n"+"Groups partially passed:\n\n"+str(groups_partially_passed)+"\n\n"+"Groups No passed:\n\n"+ str(groups_no_passed), QMessageBox.Ok)
             except:
                 QMessageBox.critical(None,'Error',"Error - No group has passed",QMessageBox.Abort)
         salome.sg.updateObjBrowser()
@@ -142,7 +146,7 @@ class PassGroups(QWidget):
 d = QDockWidget()
 d.setWidget(PassGroups())
 d.setAttribute(Qt.WA_DeleteOnClose)
-d.setWindowFlags(d.windowFlags() | QtCore.Qt.WindowStaysOnTopHint)
+d.setWindowFlags(d.windowFlags() | Qt.WindowStaysOnTopHint)
 d.setWindowTitle(" Pass Geometrical Groups ")
 d.setGeometry(600, 300, 400, 250)
 d.show()
