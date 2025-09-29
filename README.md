@@ -59,17 +59,6 @@ Original Source: https://github.com/psicofil/Salome_Scripts
 
 Autor: @psicofil (Lucio Gomez)
 
-### Internal Contour
-
-Auto-selects the internal contour of a part. You have 2 options, select only the internal surface and set it as a group (for FEM), or create a new part with the control volume (for CFD).
-
-![ScreenShot](Previews/geom_internal_contour.png)
-
-Original Source: https://github.com/psicofil/Salome_Scripts
-
-Autor: @psicofil (Lucio Gomez)
-
-Video Idea Demostration (Old Video): https://www.youtube.com/watch?v=XkzQoCLW-MI
 
 ## Mesh Plugins
 
