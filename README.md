@@ -83,18 +83,6 @@ Original Source: https://github.com/psicofil/Salome_Scripts
 
 Autor: @psicofil (Lucio Gomez)
 
-### Mesh whit Gmsh mesher
-
-Macro/script to create mesh inside of Salome Platform with GMSH mesher.
-
-![ScreenShot](Previews/smesh_gmsh_mesh.png)
-
-Original Source: https://github.com/psicofil/Salome_Scripts
-
-Autor: @psicofil (Lucio Gomez)
-
-Video Idea Demostration (Old Video): https://www.youtube.com/watch?v=sRjfJeXBlBY
-
 ### Export Salome Mesh to CalcuiX 
 
 A python script that outputs a Salome mesh to Calculix using unical converter for Bernhardi, Aug 2011
