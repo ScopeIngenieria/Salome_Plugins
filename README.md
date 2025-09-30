@@ -4,7 +4,7 @@ Collection of scripts for the Salome platform.
 
 # Install Instructions
 
-On Linux:
+**On Linux**:
 
 Copy the Plugins folder and its contents to the following address:
 
@@ -12,13 +12,19 @@ Copy the Plugins folder and its contents to the following address:
 
 change USER_NAME by your username
 
-On Windows:
+**On Windows**:
 
 Copy the Plugins folder and its contents to the following address:
 
 * C:/Users/USER_NAME/.config/salome
 
 change USER_NAME by your username
+
+**On Salome_Meca**:
+
+Use the bind option with the salome_meca launcher. 
+
+* --bind "/home/$USER/.config/salome" "/home/salome/.config/salome"
 
 ## Geom Plugins
 
