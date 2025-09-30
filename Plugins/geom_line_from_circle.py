@@ -140,7 +140,7 @@ d = QDockWidget()
 d.setWidget(CreateLinesFromCircles())
 d.setAttribute(Qt.WA_DeleteOnClose)
 d.setWindowFlags(d.windowFlags() | Qt.WindowStaysOnTopHint)
-d.setWindowTitle(" Pass Geometrical Groups ")
+d.setWindowTitle(" Create Edges/Lines between two groups of circles ")
 d.setGeometry(600, 300, 400, 250)
 d.show()
 

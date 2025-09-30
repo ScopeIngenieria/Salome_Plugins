@@ -24,6 +24,15 @@ change USER_NAME by your username
 
 Video Demostration: https://www.youtube.com/watch?v=W_JMXui-vkI
 
+### Pass similar Group
+
+After an operation in the geometry module the groups are lost and must be done again. 
+With this script you can pass the groups (or the majority) after performing an operation to the part.
+
+![ScreenShot](Previews/geom_pass_group.png)
+
+Autor: @psicofil (Lucio Gomez)
+
 ### Filter Group
 
 Creating Geometry groups in the GEOM module using features and properties of another group.
@@ -44,14 +53,14 @@ Autor: @psicofil (Lucio Gomez)
 
 Video Idea Demostration (Old Video): https://www.youtube.com/watch?v=QTaSs1JFrHw
 
-### Pass similar Group
+### Create Edges/Lines between two groups of circles
 
-After an operation in the geometry module the groups are lost and must be done again. 
-With this script you can pass the groups (or the majority) after performing an operation to the part.
+Create edges/lines between two groups or compounds of circles. Useful for beam-bolt models.
 
-![ScreenShot](Previews/geom_pass_group.png)
+![ScreenShot](Previews/geom_line_from_circle.png)
 
 Autor: @psicofil (Lucio Gomez)
+
 
 ## Mesh Plugins
 
