@@ -2,19 +2,10 @@
 # Create mesh groups from geometry, even if the link does not exist.
 # Autor: Lucio Gomez (psicofil@gmail.com)
 # Creation Date: 01/09/2017
-# Version: 06/02/2018
+# Version: 30/09/2025
 
 ## Import necesary Libreries
-try:
-    from PyQt4 import QtGui,QtCore
-    from PyQt4.QtGui import *
-    from PyQt4.QtCore import *
-except:
-    from PyQt5.QtWidgets import QWidget, QMessageBox
-    from PyQt5 import QtCore, QtGui
-    import PyQt5.QtCore as QtCore
-    from PyQt5.QtWidgets import *
-    from PyQt5.QtCore import Qt
+from qtsalome import *
 
 import salome
 import GEOM
@@ -25,9 +16,8 @@ import SMESH, SALOMEDS
 from salome.smesh import smeshBuilder
 
 # Detect current study
-theStudy = salome.myStudy
-geompy = geomBuilder.New(theStudy)
-smesh = smeshBuilder.New(theStudy)
+geompy = geomBuilder.New()
+smesh = smeshBuilder.New()
 salome.salome_init()
 
 ### START OF MACRO
@@ -74,22 +64,22 @@ class GeomGroups(QWidget):
         self.okbox.rejected.connect(self.cancel)
         self.pb_loadgroup.clicked.connect(self.selectGroups)
         self.pb_loadmesh.clicked.connect(self.selectMesh)
-        
+    ##
     def selectGroups(self):
         try:
-	  selCount = salome.sg.SelectedCount()
-          selobj = list()
-          self.tb_groups.clear()
-          for i in range(0, selCount):
-	    sel_i=salome.sg.getSelected(i)
-	    selobj_i=salome.myStudy.FindObjectID(sel_i).GetObject()
-	    selobj.append(selobj_i)
-	    self.tb_groups.append(selobj[i].GetName())
-	  self.parts = selobj
-	  self.selCount = len(self.parts)
+            selCount = salome.sg.SelectedCount()
+            selobj = list()
+            self.tb_groups.clear()
+            for i in range(0, selCount):
+                sel_i=salome.sg.getSelected(i)
+                selobj_i=salome.myStudy.FindObjectID(sel_i).GetObject()
+                selobj.append(selobj_i)
+                self.tb_groups.append(selobj[i].GetName())
+            self.parts = selobj
+            self.selCount = len(self.parts)
         except:
-	  QMessageBox.critical(None,'Error',"error in selected parts",QMessageBox.Abort)
-	  
+            QMessageBox.critical(None,'Error',"error in selected parts",QMessageBox.Abort)
+    ##
     def selectMesh(self):
         try:
             selected=salome.sg.getSelected(0)
@@ -99,52 +89,48 @@ class GeomGroups(QWidget):
             self.le_mesh.setText(mName)
             self.source_mesh = mesh
         except:
-	    QMessageBox.critical(None,'Error',"error in selected mesh",QMessageBox.Abort)
-          
+            QMessageBox.critical(None,'Error',"error in selected mesh",QMessageBox.Abort)
+    ##
     def proceed(self):
-      selobj = self.parts
-      Mesh_1 = self.source_mesh
-      groups_passed = list()
-      groups_no_passed = list()
-      for i in range(0,self.selCount):
-	try:
-	  name_geom_group = selobj[i].GetName()
-	  elem = str(selobj[i].GetMaxShapeType())
-	  if elem == "FACE":
-	    type_g = SMESH.FACE
-	  if elem == "EDGE":
-	    type_g = SMESH.EDGE
-	  if elem == "SOLID":
-	    type_g = SMESH.VOLUME
-	  if self.rb_nodes.isChecked():
-	    type_g = SMESH.NODE
-	  # Criterios
-	  aCriteria = []
-	  aCriterion1 = smesh.GetCriterion(type_g,SMESH.FT_BelongToGeom,SMESH.FT_Undefined,name_geom_group)
-	  aCriteria.append(aCriterion1)
-	  aFilter_1 = smesh.GetFilterFromCriteria(aCriteria)
-	  aFilter_1.SetMesh(Mesh_1.GetMesh())
-	  Group_1 = Mesh_1.CreateGroupFromFilter( type_g, name_geom_group, aFilter_1 )
-	  smesh.SetName(Group_1, name_geom_group)
-	  groups_passed.append(name_geom_group)
-	except:
-	  try:
-	    groups_no_passed.append(name_geom_group)
-	  except:
-	    QMessageBox.critical(None,'Error 1',"Unexpected error",QMessageBox.Abort)
-      QMessageBox.information(None, "Informacion","Groups that passed:\n\n"+str(groups_passed)+"\n\n"+"Groups that No passed:\n\n"+ str(groups_no_passed), QMessageBox.Ok)
-      if salome.sg.hasDesktop():
-	salome.sg.updateObjBrowser(1)
-	  
+        selobj = self.parts
+        Mesh_1 = self.source_mesh
+        groups_passed = list()
+        groups_no_passed = list()
+        for i in range(0,self.selCount):
+            try:
+                name_geom_group = selobj[i].GetName()
+                elem = str(selobj[i].GetMaxShapeType())
+                if elem == "FACE":
+                    type_g = SMESH.FACE
+                if elem == "EDGE":
+                    type_g = SMESH.EDGE
+                if elem == "SOLID":
+                    type_g = SMESH.VOLUME
+                if self.rb_nodes.isChecked():
+                    type_g = SMESH.NODE
+                # Criterios
+                aCriteria = []
+                aCriterion1 = smesh.GetCriterion(type_g,SMESH.FT_BelongToGeom,SMESH.FT_Undefined,name_geom_group)
+                aCriteria.append(aCriterion1)
+                aFilter_1 = smesh.GetFilterFromCriteria(aCriteria)
+                aFilter_1.SetMesh(Mesh_1.GetMesh())
+                Group_1 = Mesh_1.CreateGroupFromFilter( type_g, name_geom_group, aFilter_1 )
+                smesh.SetName(Group_1, name_geom_group)
+                groups_passed.append(name_geom_group)
+            except:
+                groups_no_passed.append(name_geom_group)
+        QMessageBox.information(None, "Informacion","Groups that passed:\n\n"+str(groups_passed)+"\n\n"+"Groups that No passed:\n\n"+ str(groups_no_passed), QMessageBox.Ok)
+        salome.sg.updateObjBrowser()
     # cancel function
     def cancel(self):
         self.close()
         d.close()
 
+
 d = QDockWidget()
 d.setWidget(GeomGroups())
 d.setAttribute(Qt.WA_DeleteOnClose)
-d.setWindowFlags(d.windowFlags() | QtCore.Qt.WindowStaysOnTopHint)
+d.setWindowFlags(d.windowFlags() | Qt.WindowStaysOnTopHint)
 d.setWindowTitle(" Groups from shapes ")
 d.setGeometry(600, 300, 400, 400)
 d.show()
