@@ -67,6 +67,13 @@ Create edges/lines between two groups or compounds of circles. Useful for beam-b
 
 Autor: @psicofil (Lucio Gomez)
 
+### Hole Partition
+
+Creates a radial “pad” layout, splitting the area around a hole into four blocks suitable for mapped meshing
+
+![ScreenShot](Previews/geom_pad_partition.png)
+
+Autor: @psicofil (Lucio Gomez)
 
 ## Mesh Plugins
 

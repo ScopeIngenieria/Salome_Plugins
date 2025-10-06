@@ -22,17 +22,24 @@ def line_from_circle(context):
   from importlib import reload
   reload(geom_line_from_circle)
 
+def pad_partition(context):
+  import geom_pad_partition
+  from importlib import reload
+  reload(geom_pad_partition)
 
-salome_pluginsmanager.AddFunction('Scope Plugins/Create Groups from Filter.',
-                                  'Create Groups Based on Multiple Criteria.',
+salome_pluginsmanager.AddFunction('Scope Plugins/Create Groups from Filter',
+                                  'Create Groups Based on Multiple Criteria',
                                   filter_group)
 salome_pluginsmanager.AddFunction('Scope Plugins/Detect 3D contacts',
-                                  'Automatically Detect 3D contacts of two o more parts.',
+                                  'Automatically Detect 3D contacts of two o more parts',
                                   contact)
 salome_pluginsmanager.AddFunction('Scope Plugins/Pass Geometrical Groups',
-                                  'Transfer similar groups from one part to another.',
+                                  'Transfer similar groups from one part to another',
                                   pass_group)
 salome_pluginsmanager.AddFunction('Scope Plugins/Lines from circles',
-                                  'Create Edges/Lines between two groups of circles.',
+                                  'Create Edges/Lines between two groups of circles',
                                   line_from_circle)
+salome_pluginsmanager.AddFunction('Scope Plugins/Hole Partition',
+                                  'Creates a radial “pad” layout, splitting the area around a hole into four blocks suitable for mapped meshing',
+                                  pad_partition)
 
