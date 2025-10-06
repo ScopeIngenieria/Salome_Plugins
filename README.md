@@ -85,5 +85,12 @@ Create mesh groups from geometry, even if the link does not exist.
 
 Autor: @psicofil (Lucio Gomez)
 
+### Edge Element Distribution - Number of Elements
 
+Displays a three-dimensional visualization of the number of mesh elements along each edge of a mesh or mesh group, providing an immediate view of edge-wise element distribution.
+Note: Performance is not optimal; I recommend using mesh groups rather than a global mesh.
+
+![ScreenShot](Previews/smesh_view_numberOfElements.png)
+
+Autor: @psicofil (Lucio Gomez)
 
