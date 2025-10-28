@@ -26,7 +26,7 @@ Use the bind option with the salome_meca launcher.
 
 * --bind "/home/$USER/.config/salome" "/home/salome/.config/salome"
 
-## Geom Plugins
+## Geometry Module (GEOM)
 
 Video Demostration: https://www.youtube.com/watch?v=W_JMXui-vkI
 
@@ -75,7 +75,7 @@ Creates a radial “pad” layout, splitting the area around a hole into four bl
 
 Autor: @psicofil (Lucio Gomez)
 
-## Mesh Plugins
+## Mesh Module (SMEHS)
 
 ### Belong to Geometry
 
@@ -99,6 +99,8 @@ Autor: @psicofil (Lucio Gomez)
 Detect free nodes in the selected mesh and generate 0D elements at those locations. If any vertex groups exist, create corresponding 0D elments groups. It is necessary to **Update** the view/mesh or show the created 0D node group (*OD_FreeNodes*) to see the elements.
 
 Autor: @psicofil (Lucio Gomez)
+
+## General Tools
 
 ### Fea Unit Converter
 
