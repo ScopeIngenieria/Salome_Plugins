@@ -94,15 +94,20 @@ Note: Performance is not optimal; I recommend using mesh groups rather than a gl
 
 Autor: @psicofil (Lucio Gomez)
 
+### Free Nodes to 0D Elements
+
+Detect free nodes in the selected mesh and generate 0D elements at those locations. If any vertex groups exist, create corresponding 0D elments groups. It is necessary to **Update** the view/mesh or show the created 0D node group (*OD_FreeNodes*) to see the elements.
+
+Autor: @psicofil (Lucio Gomez)
+
 ### Fea Unit Converter
 
 Gui to converts values and scaling factors across different engineering unit systems. Supports "SI, Standard", "SI, mm", "Imperial, inches", "Imperial, feet" units systems.
 
 Supported Quantities:
-
-    Mechanical: Force, Mass, Length, Pressure, Acceleration, Density
-
-    Thermal: Energy, Power, Temperature (absolute or ΔT), Heat Flux, Specific Heat, Conductivity, Convection
-
+    
+* Mechanical: Force, Mass, Length, Pressure, Acceleration, Density
+    
+* Thermal: Energy, Power, Temperature (absolute or ΔT), Heat Flux, Specific Heat, Conductivity, Convection
+    
 Autor: @psicofil (Lucio Gomez)
-
