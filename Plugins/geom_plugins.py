@@ -27,6 +27,28 @@ def pad_partition(context):
   from importlib import reload
   reload(geom_pad_partition)
 
+def midsurface(context):
+  import sys
+  from importlib import reload
+  sys.modules.pop("midsurface_pairing", None)
+  sys.modules.pop("geom_midsurface", None)
+  import midsurface_pairing
+  import geom_midsurface
+  reload(midsurface_pairing)
+  reload(geom_midsurface)
+  geom_midsurface.MidSurface(context)
+
+def get_all_beams(context):
+  import sys
+  from importlib import reload
+  sys.modules.pop("get_all_beams", None)
+  sys.modules.pop("geom_get_all_beams", None)
+  import get_all_beams as get_all_beams_eng
+  import geom_get_all_beams
+  reload(get_all_beams_eng)
+  reload(geom_get_all_beams)
+  geom_get_all_beams.GetAllBeams(context)
+
 salome_pluginsmanager.AddFunction('Scope Plugins/Create Groups from Filter',
                                   'Create Groups Based on Multiple Criteria',
                                   filter_group)
@@ -42,4 +64,9 @@ salome_pluginsmanager.AddFunction('Scope Plugins/Lines from circles',
 salome_pluginsmanager.AddFunction('Scope Plugins/Hole Partition',
                                   'Creates a radial “pad” layout, splitting the area around a hole into four blocks suitable for mapped meshing',
                                   pad_partition)
-
+salome_pluginsmanager.AddFunction('Scope Plugins/Mid surface',
+                                  'Extract mid surfaces from thin solids by pairing opposite faces',
+                                  midsurface)
+salome_pluginsmanager.AddFunction('Scope Plugins/Get all beams',
+                                  'Extract centerline edges (beams) from selected 3D solids or compounds',
+                                  get_all_beams)

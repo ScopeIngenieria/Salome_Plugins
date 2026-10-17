@@ -75,6 +75,32 @@ Creates a radial “pad” layout, splitting the area around a hole into four bl
 
 Autor: @psicofil (Lucio Gomez)
 
+### Mid surface
+
+Extract mid surfaces (neutral fibres) from thin solids. Opposite faces are paired by thickness, normals and canonical type, then one face is offset by half the gap and clipped with the solid.
+
+1. Select a solid or compound and launch **Geometry > GEOM plugins > Scope Plugins > Mid surface**.
+2. **Load selected**, review the detected pairs, uncheck any you do not want.
+3. **Apply** publishes `{name}_M`, with one child per surface named `SXX_t_yy.yy` (sequential index and thickness with 2 decimals).
+
+Use **Manual (two faces)** when auto-pairing misses a wall. Max thickness `0` means 10 % of the bounding-box diagonal. Works for plates, L/T, tubes and thin-walled boxes; the resulting faces are not joined at folds.
+
+Autor: @psicofil (Lucio Gomez)
+
+### Get all beams
+
+Extract a centerline EDGE (beam axis) from each prismatic solid: cylinders, extruded profiles, or a compound of them.
+
+The engine is `get_all_beams.py` (algorithm). The GEOM dialog is `geom_get_all_beams.py`.
+
+1. Select solids or a compound and launch **Geometry > GEOM plugins > Scope Plugins > Get all beams**.
+2. **Load selected** explodes the selection into solids and lists them.
+3. **Apply** publishes `Beams` (compound of centerlines). Optionally publish each beam as `Beams_1`, `Beams_2`, ...
+
+Works best on members with a clear longitudinal direction. Bent, branched or plate-like solids may be skipped.
+
+Autor: @psicofil (Lucio Gomez)
+
 ## Mesh Module (SMEHS)
 
 ### Belong to Geometry
@@ -91,6 +117,22 @@ Displays a three-dimensional visualization of the number of mesh elements along 
 Note: Performance is not optimal; I recommend using mesh groups rather than a global mesh.
 
 ![ScreenShot](Previews/smesh_view_numberOfElements.png)
+
+Autor: @psicofil (Lucio Gomez)
+
+### Circle node groups
+
+From a geometry group of hole edges, explode circular segments, pair semi-circles / arcs that belong to the same hole, and create one mesh NODE group per circle. Optionally insert the hole center node (and a 0D element) so the groups are ready for `LIAISON_SOLIDE` or `LIAISON_RBE2` in Code_Aster.
+
+1. Select the mesh and launch **Mesh > SMESH plugins > Scope Plugins > Circle node groups**.
+2. Select the GEOM group of circular edges and click **Capture geometry selection**.
+3. Review the detected / paired circles, then **Apply**.
+
+Created groups (prefix `HOLE` by default):
+
+* `HOLE_01` : circumference nodes + center node (`LIAISON_SOLIDE`)
+* `HOLE_01_ESCL` : circumference only (`GROUP_NO_ESCL`)
+* `HOLE_01_MAIT` : center node (`GROUP_NO_MAIT`)
 
 Autor: @psicofil (Lucio Gomez)
 
